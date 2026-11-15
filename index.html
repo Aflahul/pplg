@@ -107,7 +107,7 @@ summary{cursor:pointer;font-family:'Bangers',cursive;font-size:22px;letter-spaci
 <p style="margin:0">Dasar-dasar Pengembangan Perangkat Lunak dan Gim</p>
 
 <nav class="steps" aria-label="Bagian LKM">
-<a href="#b1">1 Pernyataan Masalah</a><a href="#b2">2 Pengumpulan Data</a><a href="#b3">3 Pengolahan Data</a><a href="#b4">4 Pembuktian</a></nav>
+<a href="#b1">1 Pernyataan Masalah</a><a href="#b2">2 Pengumpulan Data</a><a href="#b3">3 Pengolahan Data</a><a href="#b4">4 Pembuktian</a><a href="#b5">5 Kesimpulan</a></nav>
 
 <div class="panel">
 <div class="grid2">
@@ -226,18 +226,10 @@ $akunSari-&gt;lihatSaldo();</textarea></div>
 <div class="hint" id="hint3"><button type="button" class="btn small hbtn" data-hint="3">Buka petunjuk 3</button><p class="htext" hidden>Akun ketiga cukup tiga baris, seperti <code>$akunSari</code>. Class-nya tidak perlu diubah.</p></div>
 </div>
 </div>
-<div class="panel y">
-<h3 style="margin-top:0">3d. Jelaskan istilahnya</h3>
-<p class="noprint">Lengkapi dengan kalimatmu sendiri.</p>
-<label class="fl"><span>Class itu seperti … karena …</span><textarea data-save="d_class" rows="2" placeholder=""></textarea></label>
-<label class="fl"><span>Objek itu …</span><textarea data-save="d_objek" rows="2" placeholder=""></textarea></label>
-<label class="fl"><span>Atribut itu …</span><textarea data-save="d_atribut" rows="2" placeholder=""></textarea></label>
-<label class="fl"><span>Method itu …</span><textarea data-save="d_method" rows="2" placeholder=""></textarea></label>
-</div>
 </section>
 
 <section id="b4">
-<div class="sec-head"><span class="badge">Pembuktian</span><span class="time">sekitar 23 menit</span></div>
+<div class="sec-head"><span class="badge">Pembuktian</span><span class="time">sekitar 20 menit</span></div>
 <h2>Bagian 4. Buktikan dengan class Buku</h2>
 <div class="panel">
 <div class="noprint">
@@ -332,7 +324,19 @@ class ____ {                         // 1. cetakan apa yang sedang kita buat?
 <div class="cek">
 <label><input type="checkbox" data-chk="c1">Class <code>Buku</code> kami buat sendiri dari kerangka.</label>
 <label><input type="checkbox" data-chk="c2">Semua pengujian di <code>uji.php</code> lolos.</label>
-<label><input type="checkbox" data-chk="c3">Kami sudah berbagi peran mengetik dan mencatat.</label></div>
+<label><input type="checkbox" data-chk="c3">Kami sudah berbagi peran mengetik dan mencatat.</label>
+<label><input type="checkbox" data-chk="c4">Kami sudah menulis kesimpulan di Bagian 5.</label></div>
+</div>
+</section>
+
+<section id="b5">
+<div class="sec-head"><span class="badge">Menarik Kesimpulan</span><span class="time">sekitar 3 menit</span></div>
+<h2>Bagian 5. Tulis kesimpulan kalian</h2>
+<div class="panel y">
+<p class="noprint">Tulis apa yang kalian temukan hari ini, dari Bagian 1 sampai 4. Jawab singkat, pakai kata-kata kalian sendiri. Tidak perlu persis seperti buku.</p>
+<label class="fl"><span>Apa yang kalian pahami dari PBO?</span><textarea data-save="k_pbo" rows="2" placeholder=""></textarea></label>
+<label class="fl"><span>Jelaskan dengan singkat class, objek, atribut, dan method dengan kalimat kalian sendiri.</span><textarea data-save="k_istilah" rows="5" placeholder=""></textarea></label>
+<div class="balloon noprint">Guru akan memberi aba-aba untuk menulis. Sudah selesai lebih awal? Boleh menulis duluan.</div>
 </div>
 </section>
 
@@ -515,8 +519,9 @@ if ($atributBaru || $methodBaru) {
 
 <section id="kumpul" class="noprint">
 <div class="sec-head"><span class="badge">Kumpulkan</span></div>
-<h2>Sudah selesai? Cetak, lalu kumpulkan</h2>
+<h2>Setelah menulis kesimpulan: cetak, lalu kumpulkan</h2>
 <div class="panel">
+<p>Kerjakan bagian ini saat guru memberi aba-aba, sebelum posttest. Guru mendampingi.</p>
 <ol class="steps-list">
 <li>Klik <b>Cetak</b>. Di jendela cetak, pilih <b>Simpan sebagai PDF</b> dan matikan pilihan Headers and footers, lalu simpan.</li>
 <li>Klik <b>Kumpulkan</b>. Isi nama kalian berdua dan kelas, lalu unggah file PDF tadi.</li></ol>
@@ -618,11 +623,7 @@ if ($atributBaru || $methodBaru) {
   tabel([
    ['3a','Ganti $akunSari->saldo = 10000; menjadi 25000. Apa yang berubah dan apa yang tetap?',val('t3a')],
    ['3b','Di bawah $akunSari->lihatSaldo(); tambahkan $akunSari->setor(5000); lalu $akunSari->lihatSaldo(); Apakah saldo Budi ikut berubah?',val('t3b')],
-   ['3c','Tambahkan akun ketiga untuk Dewi dengan saldo 5000. Berapa baris yang bertambah dan apakah class Akun perlu diubah?',val('t3c')],
-   ['3d','Class itu seperti … karena …',val('d_class'),4],
-   [null,'Objek itu …',val('d_objek')],
-   [null,'Atribut itu …',val('d_atribut')],
-   [null,'Method itu …',val('d_method')]
+   ['3c','Tambahkan akun ketiga untuk Dewi dengan saldo 5000. Berapa baris yang bertambah dan apakah class Akun perlu diubah?',val('t3c')]
   ]);
   H('Bagian 4. Pembuktian');
   var rows4=[
@@ -637,6 +638,11 @@ if ($atributBaru || $methodBaru) {
    rows4.push([null,'Hubungan tambahan dengan buku di perpustakaan',ch[3]]);
   }
   tabel(rows4);
+  H('Bagian 5. Menarik Kesimpulan');
+  tabel([
+   ['5','Yang kami pahami dari PBO',val('k_pbo'),2],
+   [null,'Penjelasan class, objek, atribut, dan method',val('k_istilah')]
+  ]);
   mk('p','ket','Cek diri sebelum dikumpulkan:');
   [].forEach.call(document.querySelectorAll('input[data-chk]'),function(c){mk('p','cek',(c.checked?'[√] ':'[   ] ')+c.parentNode.textContent.trim());});
  }
