@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="id"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>LKM Konsep Dasar PBO</title>
+<title>LKM Konsep Dasar PBO (tanpa koding)</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bangers&family=Comic+Neue:wght@400;700;800&display=swap">
 <style>
 *{box-sizing:border-box}
@@ -95,428 +95,108 @@ summary{cursor:pointer;font-family:'Bangers',cursive;font-size:22px;letter-spaci
  #cetakdoc table.lap td.n{text-align:center}#cetakdoc table.lap th{text-align:center}
  #cetakdoc table.lap td.a{white-space:pre-wrap;text-align:left}
  #cetakdoc table.lap tr{break-inside:avoid}
+ #cetakdoc table.lap{break-inside:avoid}
  #cetakdoc p.cek{margin:0 0 3pt;text-align:left;font-size:11.5pt}
  #cetakdoc .ket{font-size:11pt;margin:4pt 0}
 }
+
+.casegrid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;margin:10px 0}
+.case{background:#fff;border:4px solid #111;border-radius:14px;box-shadow:5px 5px 0 #111;padding:10px 14px}
+.case h3{margin:0 0 4px;font-size:28px}
+.case p{margin:3px 0;font-size:16px}
+.case label.pick{display:flex;gap:10px;align-items:center;cursor:pointer;font-family:'Bangers',cursive;font-size:24px;letter-spacing:1px}
+.case label.pick input{width:22px;height:22px;accent-color:#FF3B30}
+.fld{border-left:10px solid #111;padding-left:10px;margin:8px 0}
+.fld.kc{border-color:#7db4ff}.fld.ka{border-color:#c9a8ff}.fld.km{border-color:#7ee2a0}.fld.ko{border-color:#ffc36b}
+.fld>span{display:block;margin-bottom:3px}
+.ex{background:#FFF9C4;border:4px dashed #111;border-radius:12px;padding:8px 14px;margin:10px 0}
+.ex table td,.ex table th{font-size:16px;padding:4px 8px}
+.tgrid{width:100%}
+.tgrid td{padding:6px}
+.tgrid input[type=text]{font-size:16px;padding:5px 8px}
+.fld.kc,.fld.ka,.fld.km,.fld.ko{color:#111;font-weight:700}
+.kc{color:#1F5FBF;font-weight:800}.ka{color:#7030A0;font-weight:800}.km{color:#2E7D32;font-weight:800}.ko{color:#C55A11;font-weight:800}
+@media print{#cetakdoc table.lap td.a{white-space:pre-wrap}}
+
+nav.steps a{min-width:0;font-size:13px;letter-spacing:0;padding-left:3px;padding-right:3px}
+.noprint{}
+@media print{.noprint{display:none!important}}
 </style></head><body>
 <div class="wrap">
-
 <div class="top"><span class="badge">LKM · Kelas X · Fase E</span>
-<span class="noprint"><button class="btn small" id="hapus" type="button">Hapus isian</button></span></div>
-<h1>Lembar Kerja Murid<br>Konsep Dasar PBO</h1>
-<p style="margin:0">Dasar-dasar Pengembangan Perangkat Lunak dan Gim</p>
-
-<nav class="steps" aria-label="Bagian LKM">
-<a href="#b1">1 Pernyataan Masalah</a><a href="#b2">2 Pengumpulan Data</a><a href="#b3">3 Pengolahan Data</a><a href="#b4">4 Pembuktian</a><a href="#b5">5 Kesimpulan</a></nav>
-
-<div class="panel">
-<div class="grid2">
-<label class="fl"><span>Nama pasangan 1</span><input type="text" data-save="n1"></label>
-<label class="fl"><span>Nama pasangan 2</span><input type="text" data-save="n2"></label>
-</div>
-<label class="fl" style="max-width:240px"><span>Kelas</span><input type="text" data-save="kelas" placeholder="X …"></label>
-<h3 class="noprint">Aturan main</h3>
-<ul class="rules noprint"><li>Kerjakan bersama teman sebangku.</li><li>Bebas atur siapa yang mengetik dan siapa yang mencatat. Boleh gantian kapan saja.</li><li>Berani mencoba. Salah itu boleh.</li></ul>
-</div>
-
-<section id="b1">
-<div class="sec-head"><span class="badge">Pernyataan Masalah</span><span class="time">sekitar 7 menit</span></div>
-<h2>Bagian 1. Kenali isi kode ini</h2>
-<div class="panel noprint">
-<p>Kode <code>akun.php</code> berikut menyimpan saldo dua akun bank. Perhatikan kodenya dulu.</p>
-<div class="legend">
-<span class="chip kc-bg">class</span><span class="chip ka-bg">atribut</span><span class="chip km-bg">method</span><span class="chip ko-bg">objek</span></div>
-<div class="codewrap"><div class="codebar"><span class="fname">akun.php</span>
-<button type="button" class="btn small" data-copy="kode-akun">Salin kode</button></div>
-<pre class="code" id="kode-akun-show"><span class='ph'>&lt;?php</span>
-<span class="kc">class Akun</span> {
-    public <span class="ka">$pemilik</span>;
-    public <span class="ka">$saldo</span>;
-
-    public function <span class="km">setor</span>($jumlah) {
-        $this-&gt;<span class="ka">saldo</span> = $this-&gt;<span class="ka">saldo</span> + $jumlah;
-    }
-
-    public function <span class="km">lihatSaldo</span>() {
-        echo $this-&gt;<span class="ka">pemilik</span> . " memiliki saldo Rp " . $this-&gt;<span class="ka">saldo</span> . "&lt;br&gt;";
-    }
-}
-
-<span class="ko">$akunBudi</span> = new <span class="kc">Akun</span>();
-<span class="ko">$akunBudi</span>-&gt;<span class="ka">pemilik</span> = "Budi";
-<span class="ko">$akunBudi</span>-&gt;<span class="ka">saldo</span> = 50000;
-<span class="ko">$akunBudi</span>-&gt;<span class="km">setor</span>(20000);
-<span class="ko">$akunBudi</span>-&gt;<span class="km">lihatSaldo</span>();
-
-<span class="ko">$akunSari</span> = new <span class="kc">Akun</span>();
-<span class="ko">$akunSari</span>-&gt;<span class="ka">pemilik</span> = "Sari";
-<span class="ko">$akunSari</span>-&gt;<span class="ka">saldo</span> = 10000;
-<span class="ko">$akunSari</span>-&gt;<span class="km">lihatSaldo</span>();</pre>
-<textarea id="kode-akun" class="hidden" readonly>&lt;?php
-class Akun {
-    public $pemilik;
-    public $saldo;
-
-    public function setor($jumlah) {
-        $this-&gt;saldo = $this-&gt;saldo + $jumlah;
-    }
-
-    public function lihatSaldo() {
-        echo $this-&gt;pemilik . " memiliki saldo Rp " . $this-&gt;saldo . "&lt;br&gt;";
-    }
-}
-
-$akunBudi = new Akun();
-$akunBudi-&gt;pemilik = "Budi";
-$akunBudi-&gt;saldo = 50000;
-$akunBudi-&gt;setor(20000);
-$akunBudi-&gt;lihatSaldo();
-
-$akunSari = new Akun();
-$akunSari-&gt;pemilik = "Sari";
-$akunSari-&gt;saldo = 10000;
-$akunSari-&gt;lihatSaldo();</textarea></div>
-<p><code>$this</code> itu dibaca “objek ini”.</p>
-</div>
-
-<div class="panel y">
-<h3 style="margin-top:0">Apa yang ingin kita ketahui?</h3>
-<p><b>1a.</b> Apa fungsi class, atribut, method, dan objek pada kode tadi? Tulis dengan kata-kata kalian sendiri.</p>
-<table><tr><th>Bagian</th><th>Menurut kami, gunanya untuk…</th></tr><tr><td class="w"><span class="chip kc-bg">class</span></td><td><textarea data-save="fungsi_class" rows="2" placeholder="Menurut kami, gunanya untuk…"></textarea></td></tr><tr><td class="w"><span class="chip ka-bg">atribut</span></td><td><textarea data-save="fungsi_atribut" rows="2" placeholder="Menurut kami, gunanya untuk…"></textarea></td></tr><tr><td class="w"><span class="chip km-bg">method</span></td><td><textarea data-save="fungsi_method" rows="2" placeholder="Menurut kami, gunanya untuk…"></textarea></td></tr><tr><td class="w"><span class="chip ko-bg">objek</span></td><td><textarea data-save="fungsi_objek" rows="2" placeholder="Menurut kami, gunanya untuk…"></textarea></td></tr></table>
-<label class="fl"><span>1b. Apa yang tampil di layar saat kode dijalankan?</span><textarea data-save="q1b" rows="3" placeholder="Jawaban awal kami…"></textarea></label>
-<p style="margin-bottom:4px"><b>1c.</b> Saat saldo Sari berubah, apakah saldo Budi ikut berubah?</p>
-<div class="radios" role="radiogroup" aria-label="Saldo Budi ikut berubah?">
-<label><input type="radio" name="q1c" value="ya">Ya, ikut berubah</label>
-<label><input type="radio" name="q1c" value="tidak">Tidak ikut berubah</label>
-<label><input type="radio" name="q1c" value="belum">Belum tahu</label></div>
-<label class="fl"><span>Alasan kami</span><textarea data-save="q1calasan" rows="2" placeholder=""></textarea></label>
-</div>
+<span class="noprint"><button class="btn small" id="hapus" type="button">Mulai baru</button></span></div>
+<h1>Lembar Kerja Murid<br>Merancang dengan PBO</h1>
+<p style="margin:0">Dasar-dasar Pengembangan Perangkat Lunak dan Gim · belum ada kode hari ini, kita merancang dulu</p>
+<nav class="steps noprint" aria-label="Bagian LKM">
+<a href="#mulai">Kasus</a><a href="#b1">1 Class</a><a href="#b2">2 Atribut</a><a href="#b3">3 Method</a><a href="#b4">4 Enkapsulasi</a><a href="#b5">5 Pewarisan</a><a href="#b6">6 Polimorfisme</a><a href="#b7">7 Kesimpulan</a><a href="#kumpul">Kumpulkan</a></nav>
+<div class="panel noprint"><b>Identitas pasangan</b>
+<div class="grid2"><label class="fl fld "><span>Nama anggota 1</span><input type="text" data-save="n1" placeholder=""></label><label class="fl fld "><span>Nama anggota 2</span><input type="text" data-save="n2" placeholder=""></label></div><label class="fl fld "><span>Kelas</span><input type="text" data-save="kelas" placeholder=""></label></div>
+<section id="mulai" class="noprint">
+<div class="sec-head"><span class="badge">Mulai</span><span class="time">menit 12-14</span></div>
+<h2>Pilih kasus kalian</h2>
+<div class="panel y"><p><b>Masalah kita:</b> sebuah studio gim akan membuat aplikasi baru. Sebelum mengetik kode, tim programmer harus lebih dulu membuat <b>rancangan</b>: benda apa saja, cirinya apa, bisa melakukan apa, dan bagaimana benda-benda itu saling berhubungan. Tugas kalian: <b>merancang satu kasus dengan cara PBO.</b></p></div>
+<p>Pilih satu kasus bersama teman sebangku. Tidak ada kasus yang lebih mudah: semuanya bisa dikerjakan sampai Bagian 7.</p>
+<div class="casegrid"><div class="case"><label class="pick"><input type="radio" name="kasus" value="A"> Kasus A: Peliharaan</label><p>Kucing, burung, ikan, kelinci, atau hewan peliharaan lain di rumahmu atau tetanggamu.</p></div><div class="case"><label class="pick"><input type="radio" name="kasus" value="B"> Kasus B: Kendaraan</label><p>Motor, mobil, sepeda, bus, atau kendaraan lain yang sering kamu lihat di jalan.</p></div><div class="case"><label class="pick"><input type="radio" name="kasus" value="C"> Kasus C: Alat tulis di tas</label><p>Pulpen, pensil, spidol, penghapus, atau alat tulis lain di tasmu.</p></div><div class="case"><label class="pick"><input type="radio" name="kasus" value="D"> Kasus D: Kasus sendiri</label><p>Pilih benda atau hal lain yang kamu kenal, asal ada banyak jenis atau banyak contohnya. Contoh: karakter gim, menu kantin, seragam.</p></div></div>
+<label class="fl fld "><span>Kalau kasus D, tulis nama kasusnya</span><input type="text" data-save="kasus_d" placeholder="contoh: karakter gim"></label>
+<p class="legend noprint"><span class="chip kc-bg">Class</span><span class="chip ko-bg">Objek</span><span class="chip ka-bg">Atribut</span><span class="chip km-bg">Method</span></p>
 </section>
-
-<section id="b2">
-<div class="sec-head"><span class="badge">Pengumpulan Data</span><span class="time">sekitar 8 menit</span></div>
-<h2>Bagian 2. Jalankan kodenya dan catat hasilnya</h2>
-<div class="panel">
-<ol class="steps-list noprint">
-<li>Buat folder baru bernama <code>lkm</code> di <code>C:\laragon\www</code> (Laragon) atau di <code>C:\xampp\htdocs</code> (XAMPP).</li>
-<li>Klik <b>Salin kode</b> pada kode <code>akun.php</code> di Bagian 1.</li>
-<li>Tempel di VS Code atau editor lain, lalu simpan sebagai <code>akun.php</code> di folder <code>lkm</code>.</li>
-<li>Buka <code>http://localhost/lkm/akun.php</code> di browser.</li>
-<li>Catat apa yang tampil di layar.</li></ol>
-<label class="fl"><span>Hasil yang tampil di layar</span><textarea data-save="q2hasil" rows="3" placeholder=""></textarea></label>
-<p style="margin-bottom:4px">Bandingkan dengan jawaban awal kalian di 1b dan 1c.</p>
-<div class="radios" role="radiogroup" aria-label="Perbandingan dengan jawaban awal">
-<label><input type="radio" name="q2cocok" value="sesuai">Sama dengan jawaban awal</label>
-<label><input type="radio" name="q2cocok" value="beda">Beda dari jawaban awal</label></div>
-<label class="fl"><span>Kalau beda, bagian mana yang di luar perkiraan kalian?</span><textarea data-save="q2beda" rows="2" placeholder=""></textarea></label>
-</div>
+<section id="b1" class="noprint">
+<div class="sec-head"><span class="badge">Bagian 1</span><span class="time">menit 19-26</span></div>
+<h2>Class dan objek</h2>
+<div class="panel"><p>Lihat sekitarmu. Dari kasus kalian, sebutkan <b>empat benda nyata</b> (objek). Lalu cari <b>satu nama</b> yang menyatukan keempatnya. Nama itu adalah <b>class</b> (cetakan atau rancangan).</p><div class="ex"><b>Contoh dari guru: Ponsel</b>
+<table><tr><th>Bagian</th><th>Isinya</th></tr>
+<tr><td><span class="kc">Class</span></td><td>Ponsel (cetakan atau rancangannya)</td></tr>
+<tr><td><span class="ko">Objek</span></td><td>Ponsel milik Andi, ponsel milik Sari, ponsel milik Dewi</td></tr>
+<tr><td><span class="ka">Atribut</span></td><td>merek, warna, sisa baterai (nilainya beda tiap ponsel)</td></tr>
+<tr><td><span class="km">Method</span></td><td>menelepon, memotret, mengisi daya</td></tr></table></div></div>
+<label class="fl fld ko"><span>Objek 1 (benda nyata)</span><input type="text" data-save="o1" placeholder="nama benda nyata"></label><label class="fl fld ko"><span>Objek 2</span><input type="text" data-save="o2" placeholder=""></label><label class="fl fld ko"><span>Objek 3</span><input type="text" data-save="o3" placeholder=""></label><label class="fl fld ko"><span>Objek 4</span><input type="text" data-save="o4" placeholder=""></label><label class="fl fld kc"><span>Nama class yang menyatukan keempat objek</span><input type="text" data-save="cls" placeholder="satu kata benda umum, bukan nama orang"></label><label class="fl fld "><span>Mengapa keempat benda itu satu class?</span><textarea data-save="alasan1" rows="2" placeholder="karena semuanya ..."></textarea></label>
+<details class="pl"><summary>Macet? Petunjuk 1</summary><p>Coba bayangkan kamu mau membuat <b>cetakan</b> untuk keempat benda itu. Cetakan itu diberi nama apa?</p></details><details class="pl"><summary>Macet? Petunjuk 2</summary><p>Pada contoh ponsel, ponsel Andi dan ponsel Sari sama-sama bisa menelepon dan punya warna. Karena itu class-nya Ponsel. Cari kesamaan seperti itu pada objekmu.</p></details>
 </section>
-
-<section id="b3">
-<div class="sec-head"><span class="badge">Pengolahan Data</span><span class="time">sekitar 16 menit</span></div>
-<h2>Bagian 3. Ubah kodenya dan amati perubahannya</h2>
-<div class="panel">
-<p class="noprint">Kerjakan satu per satu. Setiap selesai mengubah, jalankan ulang lalu catat yang kalian amati.</p>
-<table><tr><th>No</th><th>Ubah</th><th>Yang kami amati</th></tr><tr><td class="w nm">3a</td><td>Ganti <code>$akunSari->saldo = 10000;</code> menjadi <code>25000</code>.<br><b>Amati</b> apa yang berubah dan apa yang tetap.</td><td><textarea data-save="t3a" rows="3" placeholder="Yang kami amati…"></textarea></td></tr><tr><td class="w nm">3b</td><td>Di bawah <code>$akunSari->lihatSaldo();</code> tambahkan <code>$akunSari->setor(5000);</code> lalu <code>$akunSari->lihatSaldo();</code>.<br><b>Amati</b> apakah saldo Budi ikut berubah.</td><td><textarea data-save="t3b" rows="3" placeholder="Yang kami amati…"></textarea></td></tr><tr><td class="w nm">3c</td><td>Tambahkan akun ketiga untuk Dewi dengan saldo 5000.<br><b>Amati</b> berapa baris yang bertambah dan apakah class <code>Akun</code> perlu diubah.</td><td><textarea data-save="t3c" rows="3" placeholder="Yang kami amati…"></textarea></td></tr></table>
-<div class="noprint">
-<h3>Perlu bantuan? Buka petunjuk bertahap</h3>
-<p>Buka satu per satu, mulai dari petunjuk 1. Sudah membuka <span class="counter" id="hcount">0</span> dari 3 petunjuk.</p>
-<div class="hint" id="hint1"><button type="button" class="btn small hbtn" data-hint="1">Buka petunjuk 1</button><p class="htext" hidden>Lihat objek <code>$akunBudi</code> dan <code>$akunSari</code>. Berapa kali <code>new Akun()</code> dipanggil?</p></div>
-<div class="hint" id="hint2"><button type="button" class="btn small hbtn" data-hint="2">Buka petunjuk 2</button><p class="htext" hidden>Setiap objek punya saldo sendiri. Objek lain tidak ikut berubah.</p></div>
-<div class="hint" id="hint3"><button type="button" class="btn small hbtn" data-hint="3">Buka petunjuk 3</button><p class="htext" hidden>Akun ketiga cukup tiga baris, seperti <code>$akunSari</code>. Class-nya tidak perlu diubah.</p></div>
-</div>
-</div>
+<section id="b2" class="noprint">
+<div class="sec-head"><span class="badge">Bagian 2</span><span class="time">menit 26-34</span></div>
+<h2>Atribut</h2>
+<div class="panel"><p><b>Atribut</b> adalah ciri atau data yang dimiliki sebuah objek. Isi empat atribut dari class kalian. Lalu tulis nilainya untuk <b>dua objek</b> (Objek 1 dan Objek 2 dari Bagian 1). Nilainya boleh berbeda.</p></div>
+<table class="tgrid"><tr><th>Atribut</th><th>Nilai pada Objek 1</th><th>Nilai pada Objek 2</th></tr><tr><td><input type="text" class="" data-save="a1" placeholder=""></td><td><input type="text" data-save="a1v1"></td><td><input type="text" data-save="a1v2"></td></tr><tr><td><input type="text" class="" data-save="a2" placeholder=""></td><td><input type="text" data-save="a2v1"></td><td><input type="text" data-save="a2v2"></td></tr><tr><td><input type="text" class="" data-save="a3" placeholder=""></td><td><input type="text" data-save="a3v1"></td><td><input type="text" data-save="a3v2"></td></tr><tr><td><input type="text" class="" data-save="a4" placeholder=""></td><td><input type="text" data-save="a4v1"></td><td><input type="text" data-save="a4v2"></td></tr></table><label class="fl fld ka"><span>Atribut mana yang nilainya paling sering berbeda antar objek? Mengapa?</span><textarea data-save="a_beda" rows="2" placeholder=""></textarea></label>
+<details class="pl"><summary>Macet? Petunjuk 1</summary><p>Tanyakan: <b>apa yang aku ketahui tentang benda ini?</b> Jawabannya berupa kata benda atau ukuran, misalnya warna, nama, umur.</p></details><details class="pl"><summary>Macet? Petunjuk 2</summary><p>Pada ponsel: merek = Samsung, warna = hitam, sisa baterai = 60%. Itu semua keterangan, bukan kegiatan.</p></details>
 </section>
-
-<section id="b4">
-<div class="sec-head"><span class="badge">Pembuktian</span><span class="time">sekitar 20 menit</span></div>
-<h2>Bagian 4. Buktikan dengan class Buku</h2>
-<div class="panel">
-<div class="noprint">
-<p>Perpustakaan sekolah butuh program peminjaman buku. Kalian bantu buat class <code>Buku</code>.</p>
-<div class="cluebox"><span class="stamp">★ CLUE</span><p style="margin:0"><span class="chip">judul</span> <span class="chip">pinjam</span> <span class="chip">penulis</span> <span class="chip">kembalikan</span> <span class="chip">dipinjam</span> <span class="chip">lihatStatus</span></p></div>
-<div class="balloon">Buku yang sedang dipinjam tidak bisa dipinjam lagi.</div>
-<h3>Langkah</h3>
-<ol class="steps-list noprint">
-<li>Buat <code>buku.php</code> di folder <code>lkm</code> dari kerangka di bawah. Isi bagian <code>____</code>.</li>
-<li>Unduh <code>uji.php</code> di <a href="#uji">bagian Berkas uji</a> di bawah halaman ini, lalu pindahkan ke folder <code>lkm</code>.</li>
-<li>Klik tombol <b>Jalankan uji</b>. Perbaiki kodemu sampai lolos dari seluruh pengujian.</li>
-<li>Catat jumlah percobaan kalian di bawah.</li></ol>
-<div class="codewrap"><div class="codebar"><span class="fname">buku.php (kerangka standar)</span>
-<button type="button" class="btn small" data-copy="kode-kerangka">Salin kode</button></div>
-<pre class="code" id="kode-kerangka-show"><span class='ph'>&lt;?php</span>
-class ____ {                         // 1. cetakan apa yang sedang kita buat?
-    public $____;                    // 2. apa yang dimiliki setiap buku?
-    public $____;                    // 3. apa lagi yang dimiliki setiap buku?
-    public $____;                    // 4. bagaimana program tahu status buku?
-
-    public function ____() {                    // 5. aksi apa yang terjadi pada buku di sini?
-        if ($this-&gt;dipinjam == ____) {          // 6. kapan buku tidak boleh dipinjam?
-            echo "Maaf, buku sedang dipinjam.&lt;br&gt;";
-        } else {
-            $this-&gt;dipinjam = ____;             // 7. setelah berhasil dipinjam, buku jadi apa?
-            echo "Buku berhasil dipinjam.&lt;br&gt;";
-        }
-    }
-
-    public function ____() {                    // 8. aksi apa yang terjadi pada buku di sini?
-        $this-&gt;dipinjam = ____;                 // 9. setelah dikembalikan, buku jadi apa?
-        echo "Buku sudah dikembalikan.&lt;br&gt;";
-    }
-
-    public function ____() {                    // 10. apa yang dilihat petugas di sini?
-        if ($this-&gt;dipinjam == true) {
-            echo $this-&gt;judul . " karya " . $this-&gt;penulis . ": sedang dipinjam&lt;br&gt;";
-        } else {
-            echo $this-&gt;judul . " karya " . $this-&gt;penulis . ": tersedia&lt;br&gt;";
-        }
-    }
-}</pre>
-<textarea id="kode-kerangka" class="hidden" readonly>&lt;?php
-class ____ {                         // 1. cetakan apa yang sedang kita buat?
-    public $____;                    // 2. apa yang dimiliki setiap buku?
-    public $____;                    // 3. apa lagi yang dimiliki setiap buku?
-    public $____;                    // 4. bagaimana program tahu status buku?
-
-    public function ____() {                    // 5. aksi apa yang terjadi pada buku di sini?
-        if ($this-&gt;dipinjam == ____) {          // 6. kapan buku tidak boleh dipinjam?
-            echo "Maaf, buku sedang dipinjam.&lt;br&gt;";
-        } else {
-            $this-&gt;dipinjam = ____;             // 7. setelah berhasil dipinjam, buku jadi apa?
-            echo "Buku berhasil dipinjam.&lt;br&gt;";
-        }
-    }
-
-    public function ____() {                    // 8. aksi apa yang terjadi pada buku di sini?
-        $this-&gt;dipinjam = ____;                 // 9. setelah dikembalikan, buku jadi apa?
-        echo "Buku sudah dikembalikan.&lt;br&gt;";
-    }
-
-    public function ____() {                    // 10. apa yang dilihat petugas di sini?
-        if ($this-&gt;dipinjam == true) {
-            echo $this-&gt;judul . " karya " . $this-&gt;penulis . ": sedang dipinjam&lt;br&gt;";
-        } else {
-            echo $this-&gt;judul . " karya " . $this-&gt;penulis . ": tersedia&lt;br&gt;";
-        }
-    }
-}</textarea></div>
-<details><summary>Macet di salah satu lubang? Buka petunjuknya</summary>
-<p>Buka satu per satu, hanya untuk lubang yang kalian butuhkan. Jawabannya tetap kalian cari sendiri.</p>
-<details class="pl"><summary>Lubang 1</summary><p>Benda apa yang dipinjam di perpustakaan? Itulah nama class-nya. Tulis dengan huruf awal besar.</p></details><details class="pl"><summary>Lubang 2</summary><p>Cari di kotak CLUE kata yang menjelaskan buku, seperti tulisan besar di sampulnya.</p></details><details class="pl"><summary>Lubang 3</summary><p>Masih tentang sampul buku. Siapa yang membuat isi buku itu? Cari di kotak CLUE.</p></details><details class="pl"><summary>Lubang 4</summary><p>Lihat method di bawah. Atribut mana yang selalu ditulis setelah <code>$this-&gt;</code> dan diperiksa nilainya?</p></details><details class="pl"><summary>Lubang 5</summary><p>Method ini memeriksa status buku, lalu mengubahnya. Kata mana di kotak CLUE yang cocok untuk aksi orang yang mengambil buku?</p></details><details class="pl"><summary>Lubang 6</summary><p>Kalimat di bawahnya berbunyi "buku sedang dipinjam". Kondisi if ini benar saat nilai <code>dipinjam</code> adalah <code>true</code> atau <code>false</code>?</p></details><details class="pl"><summary>Lubang 7</summary><p>Baris ini ada di bagian else, tepat saat buku berhasil dipinjam. Nilai <code>dipinjam</code> sekarang <code>true</code> atau <code>false</code>?</p></details><details class="pl"><summary>Lubang 8</summary><p>Method ini hanya mengubah status satu kali. Kata mana di kotak CLUE yang aksinya kebalikan dari lubang 5?</p></details><details class="pl"><summary>Lubang 9</summary><p>Buku sudah dikembalikan. Apakah buku itu masih dipinjam? Jawabannya <code>true</code> atau <code>false</code>.</p></details><details class="pl"><summary>Lubang 10</summary><p>Method ini menampilkan judul, penulis, dan keadaan buku. Kata mana di kotak CLUE yang artinya melihat keadaan?</p></details>
-</details>
-</div>
-<p class="noprint"><a class="btn" href="http://localhost/lkm/uji.php" target="_blank" rel="noopener">Jalankan uji ↗</a></p>
-<div class="grid2">
-<label class="fl"><span>Percobaan sampai semua uji lolos</span><input type="text" data-save="percobaan" inputmode="numeric" placeholder="… kali"></label>
-<label class="fl"><span>Uji yang paling lama lolos</span><input type="text" data-save="ujisulit" placeholder="Uji nomor …"></label></div>
-<div class="balloon chal noprint"><span class="stamp">★ CHALLENGE</span>Sudah selesai? Kamu bisa menambahkan 1 atribut apa saja dan method yang terkait, lalu uji lagi.</div>
-<div class="chbukti" id="chbukti">
-<h3 style="margin-top:0">Bukti CHALLENGE <span class="opt">(boleh dikosongkan)</span></h3>
-<label class="fl"><span>Atribut yang kami tambahkan</span><textarea data-save="ch_atribut" rows="1" placeholder=""></textarea></label>
-<label class="fl"><span>Method yang kami tambahkan</span><textarea data-save="ch_method" rows="1" placeholder=""></textarea></label>
-<p style="margin-bottom:4px">Setelah ditambahkan, hasil uji</p>
-<div class="radios" role="radiogroup" aria-label="Hasil uji setelah ditambahkan">
-<label><input type="radio" name="chhasil" value="lolos">Tetap lolos semua</label>
-<label><input type="radio" name="chhasil" value="gagal">Ada yang tidak lolos</label></div>
-<label class="fl"><span>Apa hubungan tambahan ini dengan buku di perpustakaan?</span><textarea data-save="ch_kaitan" rows="2" placeholder=""></textarea></label>
-</div>
-<h3>Cek diri sebelum dikumpulkan</h3>
-<div class="cek">
-<label><input type="checkbox" data-chk="c1">Class <code>Buku</code> kami buat sendiri dari kerangka.</label>
-<label><input type="checkbox" data-chk="c2">Semua pengujian di <code>uji.php</code> lolos.</label>
-<label><input type="checkbox" data-chk="c3">Kami sudah berbagi peran mengetik dan mencatat.</label>
-<label><input type="checkbox" data-chk="c4">Kami sudah menulis kesimpulan di Bagian 5.</label></div>
-</div>
+<section id="b3" class="noprint">
+<div class="sec-head"><span class="badge">Bagian 3</span><span class="time">menit 34-40</span></div>
+<h2>Method</h2>
+<div class="panel"><p><b>Method</b> adalah hal yang <b>dapat dilakukan</b> objek. Tulis empat method berupa <b>kata kerja</b>, lalu jelaskan apa yang terjadi saat method itu dijalankan.</p></div>
+<table class="tgrid"><tr><th>Method (kata kerja)</th><th>Apa yang terjadi?</th></tr><tr><td><input type="text" data-save="m1" placeholder=""></td><td><input type="text" data-save="m1h"></td></tr><tr><td><input type="text" data-save="m2" placeholder=""></td><td><input type="text" data-save="m2h"></td></tr><tr><td><input type="text" data-save="m3" placeholder=""></td><td><input type="text" data-save="m3h"></td></tr><tr><td><input type="text" data-save="m4" placeholder=""></td><td><input type="text" data-save="m4h"></td></tr></table><label class="fl fld km"><span>Method mana yang mengubah nilai sebuah atribut? Atribut yang mana?</span><textarea data-save="m_ubah" rows="2" placeholder=""></textarea></label>
+<details class="pl"><summary>Macet? Petunjuk 1</summary><p>Tanyakan: <b>apa yang bisa dilakukan benda ini?</b> Jawabannya kata kerja, misalnya makan, berjalan, menulis.</p></details><details class="pl"><summary>Macet? Petunjuk 2</summary><p>Pada ponsel: mengisi daya membuat atribut sisa baterai naik. Cari method di kasusmu yang mengubah atribut seperti itu.</p></details>
 </section>
-
-<section id="b5">
-<div class="sec-head"><span class="badge">Menarik Kesimpulan</span><span class="time">sekitar 3 menit</span></div>
-<h2>Bagian 5. Tulis kesimpulan kalian</h2>
-<div class="panel y">
-<p class="noprint">Tulis apa yang kalian temukan hari ini, dari Bagian 1 sampai 4. Jawab singkat, pakai kata-kata kalian sendiri. Tidak perlu persis seperti buku.</p>
-<label class="fl"><span>Apa yang kalian pahami dari PBO?</span><textarea data-save="k_pbo" rows="2" placeholder=""></textarea></label>
-<label class="fl"><span>Jelaskan dengan singkat class, objek, atribut, dan method dengan kalimat kalian sendiri.</span><textarea data-save="k_istilah" rows="5" placeholder=""></textarea></label>
-<div class="balloon noprint">Guru akan memberi aba-aba untuk menulis. Sudah selesai lebih awal? Boleh menulis duluan.</div>
-</div>
+<section id="b4" class="noprint">
+<div class="sec-head"><span class="badge">Bagian 4</span><span class="time">menit 40-48</span></div>
+<h2>Enkapsulasi: melindungi data</h2>
+<div class="panel"><p><b>Enkapsulasi</b>: data dijaga supaya <b>tidak diubah sembarangan</b>. Perubahan hanya lewat satu jalur yang punya aturan.</p><p>Dipakai saat ada data yang kalau salah isi bisa bermasalah, misalnya jumlah yang tidak boleh minus. Kerjakan dengan <b>kasusmu sendiri</b>, bukan memakai contoh dari guru.</p></div>
+<label class="fl fld ka"><span>Data apa di kasusmu yang tidak boleh diubah sembarangan?</span><input type="text" data-save="e_atribut" placeholder=""></label><label class="fl fld km"><span>Lewat kegiatan apa data itu boleh berubah?</span><input type="text" data-save="e_method" placeholder=""></label><label class="fl fld "><span>Aturan apa yang dijaga?</span><textarea data-save="e_aturan" rows="2" placeholder=""></textarea></label><label class="fl fld "><span>Apa akibatnya kalau tidak dijaga?</span><textarea data-save="e_akibat" rows="2" placeholder=""></textarea></label>
+<details class="pl"><summary>Macet? Petunjuk 1</summary><p>Pilih data yang kalau salah isi menjadi tidak masuk akal. Tanyakan: nilai apa di kasusmu yang tidak boleh minus, terlalu besar, atau kosong?</p></details><details class="pl"><summary>Macet? Petunjuk 2</summary><p>Jalur perubahannya adalah kegiatan yang mengubah data itu sambil memeriksa aturan. Tanyakan: kegiatan apa di kasusmu yang mengubah data tadi?</p></details>
 </section>
-
-<section id="uji" class="noprint">
-<div class="sec-head"><span class="badge">Berkas uji</span></div>
-<h2>Unduh uji.php</h2>
-<div class="panel">
-<ol class="steps-list">
-<li>Klik <b>Unduh uji.php</b>.</li>
-<li>Pindahkan <code>uji.php</code> dari folder Downloads ke folder <code>lkm</code>, satu folder dengan <code>buku.php</code>.</li>
-<li>Klik <b>Jalankan uji</b>. Hasilnya tampil di tab baru.</li></ol>
-<p><button class="btn" id="unduh" type="button">Unduh uji.php</button> <a class="btn alt" href="http://localhost/lkm/uji.php" target="_blank" rel="noopener">Jalankan uji ↗</a></p>
-<details><summary>Halaman uji tidak terbuka?</summary>
-<p>Periksa Apache sudah menyala dan <code>uji.php</code> ada di folder <code>lkm</code>. Tidak bisa mengunduh? Salin kodenya lalu simpan sebagai <code>uji.php</code>.</p>
-<div class="codewrap"><div class="codebar"><span class="fname">uji.php</span>
-<button type="button" class="btn small" data-copy="kode-uji">Salin kode</button></div>
-<pre class="code" id="kode-uji-show">&lt;?php
-// Berkas uji LKM. Jangan diubah. Simpan satu folder dengan buku.php, lalu buka uji.php di browser.
-require 'buku.php';
-
-$lolos = 0;
-$total = 7;
-
-function cek($nomor, $keterangan, $hasil) {
-    global $lolos;
-    if ($hasil) {
-        $lolos++;
-        echo "&lt;p style='color:green'&gt;✔ Uji $nomor lolos: $keterangan&lt;/p&gt;";
-    } else {
-        echo "&lt;p style='color:red'&gt;✘ Uji $nomor belum lolos: $keterangan&lt;/p&gt;";
-    }
-}
-
-cek(1, "class Buku sudah dibuat", class_exists('Buku'));
-if (!class_exists('Buku')) { echo "&lt;p&gt;Periksa nama class di buku.php.&lt;/p&gt;"; exit; }
-
-try {
-    $a = new Buku();
-    $b = new Buku();
-} catch (Error $e) {
-    echo "&lt;p style='color:red'&gt;Class Buku harus bisa dibuat dengan &lt;code&gt;new Buku()&lt;/code&gt; tanpa isian. Hapus bagian yang mewajibkan isian saat objek dibuat.&lt;/p&gt;";
-    exit;
-}
-$a-&gt;judul = "Laskar Pelangi";
-$a-&gt;penulis = "Andrea Hirata";
-$a-&gt;dipinjam = false;
-
-$b-&gt;judul = "Bumi Manusia";
-$b-&gt;penulis = "Pramoedya Ananta Toer";
-$b-&gt;dipinjam = false;
-
-cek(2, "dua objek menyimpan judul masing-masing", $a-&gt;judul != $b-&gt;judul);
-
-ob_start();
-$a-&gt;pinjam();
-$keluar1 = ob_get_clean();
-cek(3, "pinjam() mengubah dipinjam menjadi true", $a-&gt;dipinjam === true);
-
-ob_start();
-$a-&gt;pinjam();
-$keluar2 = ob_get_clean();
-cek(4, "meminjam buku yang sedang dipinjam menghasilkan pesan berbeda", $keluar1 != $keluar2 &amp;&amp; $a-&gt;dipinjam === true);
-
-cek(5, "buku B tidak ikut berubah saat buku A dipinjam", $a-&gt;dipinjam === true &amp;&amp; $b-&gt;dipinjam === false);
-
-$a-&gt;dipinjam = true;
-ob_start();
-$a-&gt;kembalikan();
-ob_end_clean();
-cek(6, "kembalikan() mengubah dipinjam menjadi false", $a-&gt;dipinjam === false);
-
-ob_start();
-$b-&gt;lihatStatus();
-$status = ob_get_clean();
-cek(7, "lihatStatus() menampilkan judul buku", strpos($status, "Bumi Manusia") !== false);
-
-echo "&lt;h3&gt;Hasil: $lolos dari $total uji lolos&lt;/h3&gt;";
-
-$atributDasar = ['judul', 'penulis', 'dipinjam'];
-$methodDasar = ['pinjam', 'kembalikan', 'lihatStatus'];
-$kelas = new ReflectionClass('Buku');
-$atributBaru = [];
-foreach ($kelas-&gt;getProperties() as $p) {
-    if (!in_array($p-&gt;getName(), $atributDasar)) { $atributBaru[] = $p-&gt;getName(); }
-}
-$methodBaru = [];
-foreach ($kelas-&gt;getMethods() as $m) {
-    if (!in_array($m-&gt;getName(), $methodDasar) &amp;&amp; $m-&gt;getName() != '__construct') { $methodBaru[] = $m-&gt;getName() . '()'; }
-}
-if ($atributBaru || $methodBaru) {
-    echo "&lt;h3&gt;★ CHALLENGE&lt;/h3&gt;";
-    if ($atributBaru) { echo "&lt;p&gt;Atribut tambahan: " . implode(', ', $atributBaru) . "&lt;/p&gt;"; }
-    if ($methodBaru) { echo "&lt;p&gt;Method tambahan: " . implode(', ', $methodBaru) . "&lt;/p&gt;"; }
-    echo "&lt;p&gt;Tambahan ini tidak dinilai oleh uji. Pastikan hasil uji di atas tetap lolos semua, lalu tunjukkan tambahanmu ke guru.&lt;/p&gt;";
-}
-</pre>
-<textarea id="kode-uji" class="hidden" readonly>&lt;?php
-// Berkas uji LKM. Jangan diubah. Simpan satu folder dengan buku.php, lalu buka uji.php di browser.
-require 'buku.php';
-
-$lolos = 0;
-$total = 7;
-
-function cek($nomor, $keterangan, $hasil) {
-    global $lolos;
-    if ($hasil) {
-        $lolos++;
-        echo "&lt;p style='color:green'&gt;✔ Uji $nomor lolos: $keterangan&lt;/p&gt;";
-    } else {
-        echo "&lt;p style='color:red'&gt;✘ Uji $nomor belum lolos: $keterangan&lt;/p&gt;";
-    }
-}
-
-cek(1, "class Buku sudah dibuat", class_exists('Buku'));
-if (!class_exists('Buku')) { echo "&lt;p&gt;Periksa nama class di buku.php.&lt;/p&gt;"; exit; }
-
-try {
-    $a = new Buku();
-    $b = new Buku();
-} catch (Error $e) {
-    echo "&lt;p style='color:red'&gt;Class Buku harus bisa dibuat dengan &lt;code&gt;new Buku()&lt;/code&gt; tanpa isian. Hapus bagian yang mewajibkan isian saat objek dibuat.&lt;/p&gt;";
-    exit;
-}
-$a-&gt;judul = "Laskar Pelangi";
-$a-&gt;penulis = "Andrea Hirata";
-$a-&gt;dipinjam = false;
-
-$b-&gt;judul = "Bumi Manusia";
-$b-&gt;penulis = "Pramoedya Ananta Toer";
-$b-&gt;dipinjam = false;
-
-cek(2, "dua objek menyimpan judul masing-masing", $a-&gt;judul != $b-&gt;judul);
-
-ob_start();
-$a-&gt;pinjam();
-$keluar1 = ob_get_clean();
-cek(3, "pinjam() mengubah dipinjam menjadi true", $a-&gt;dipinjam === true);
-
-ob_start();
-$a-&gt;pinjam();
-$keluar2 = ob_get_clean();
-cek(4, "meminjam buku yang sedang dipinjam menghasilkan pesan berbeda", $keluar1 != $keluar2 &amp;&amp; $a-&gt;dipinjam === true);
-
-cek(5, "buku B tidak ikut berubah saat buku A dipinjam", $a-&gt;dipinjam === true &amp;&amp; $b-&gt;dipinjam === false);
-
-$a-&gt;dipinjam = true;
-ob_start();
-$a-&gt;kembalikan();
-ob_end_clean();
-cek(6, "kembalikan() mengubah dipinjam menjadi false", $a-&gt;dipinjam === false);
-
-ob_start();
-$b-&gt;lihatStatus();
-$status = ob_get_clean();
-cek(7, "lihatStatus() menampilkan judul buku", strpos($status, "Bumi Manusia") !== false);
-
-echo "&lt;h3&gt;Hasil: $lolos dari $total uji lolos&lt;/h3&gt;";
-
-$atributDasar = ['judul', 'penulis', 'dipinjam'];
-$methodDasar = ['pinjam', 'kembalikan', 'lihatStatus'];
-$kelas = new ReflectionClass('Buku');
-$atributBaru = [];
-foreach ($kelas-&gt;getProperties() as $p) {
-    if (!in_array($p-&gt;getName(), $atributDasar)) { $atributBaru[] = $p-&gt;getName(); }
-}
-$methodBaru = [];
-foreach ($kelas-&gt;getMethods() as $m) {
-    if (!in_array($m-&gt;getName(), $methodDasar) &amp;&amp; $m-&gt;getName() != '__construct') { $methodBaru[] = $m-&gt;getName() . '()'; }
-}
-if ($atributBaru || $methodBaru) {
-    echo "&lt;h3&gt;★ CHALLENGE&lt;/h3&gt;";
-    if ($atributBaru) { echo "&lt;p&gt;Atribut tambahan: " . implode(', ', $atributBaru) . "&lt;/p&gt;"; }
-    if ($methodBaru) { echo "&lt;p&gt;Method tambahan: " . implode(', ', $methodBaru) . "&lt;/p&gt;"; }
-    echo "&lt;p&gt;Tambahan ini tidak dinilai oleh uji. Pastikan hasil uji di atas tetap lolos semua, lalu tunjukkan tambahanmu ke guru.&lt;/p&gt;";
-}
-</textarea></div>
-</details>
-</div>
+<section id="b5" class="noprint">
+<div class="sec-head"><span class="badge">Bagian 5</span><span class="time">menit 48-58</span></div>
+<h2>Pewarisan: berbagi sifat</h2>
+<div class="panel"><p><b>Pewarisan</b>: benda yang mirip tidak ditulis ulang. Ciri yang sama dikumpulkan di satu <b>kelompok umum</b> (induk), kelompok yang lebih khusus (turunan) tinggal memakainya.</p><p>Dipakai saat beberapa benda punya banyak kesamaan. Kerjakan dengan <b>kasusmu sendiri</b>, bukan memakai contoh dari guru.</p></div>
+<label class="fl fld kc"><span>Kelompok umum di kasusmu</span><input type="text" data-save="p_induk" placeholder=""></label><label class="fl fld kc"><span>Kelompok khusus 1</span><input type="text" data-save="p_t1" placeholder=""></label><label class="fl fld kc"><span>Kelompok khusus 2</span><input type="text" data-save="p_t2" placeholder=""></label><label class="fl fld ka"><span>Ciri dan kegiatan apa yang sama dan dipakai bersama?</span><textarea data-save="p_waris" rows="2" placeholder=""></textarea></label><label class="fl fld km"><span>Apa yang khusus milik kelompok 1 saja?</span><textarea data-save="p_k1" rows="2" placeholder=""></textarea></label><label class="fl fld km"><span>Apa yang khusus milik kelompok 2 saja?</span><textarea data-save="p_k2" rows="2" placeholder=""></textarea></label><div class="balloon chal"><span class="stamp">TANTANGAN</span>Sudah selesai? Tambahkan satu kelompok khusus ketiga, atau satu kelompok lain yang berhubungan dengan kasusmu. Jelaskan hubungannya.<label class="fl fld kc"><span>Kelompok tambahan</span><input type="text" data-save="ch_class" placeholder=""></label><label class="fl fld "><span>Hubungannya dengan kasusmu</span><textarea data-save="ch_kaitan" rows="2" placeholder=""></textarea></label></div>
+<details class="pl"><summary>Macet? Petunjuk 1</summary><p>Cari ciri yang <b>dimiliki semua</b> anggota kelompok benda. Itu masuk ke kelompok umum. Tulis sekali saja.</p></details><details class="pl"><summary>Macet? Petunjuk 2</summary><p>Kelompok khusus hanya menambah yang khusus. Tanyakan: apa yang dimiliki kelompok 1 tetapi tidak dimiliki kelompok 2?</p></details>
 </section>
-
+<section id="b6" class="noprint">
+<div class="sec-head"><span class="badge">Bagian 6</span><span class="time">menit 58-66</span></div>
+<h2>Polimorfisme: satu aksi, banyak cara</h2>
+<div class="panel"><p><b>Polimorfisme</b>: satu perintah yang sama, <b>hasilnya menyesuaikan bendanya</b>.</p><p>Dipakai saat beberapa benda melakukan hal yang sama dengan cara berbeda, jadi cukup satu nama perintah. Kerjakan dengan <b>kasusmu sendiri</b>, bukan memakai contoh dari guru.</p></div>
+<label class="fl fld km"><span>Kegiatan apa yang dimiliki semua benda, tetapi caranya berbeda?</span><input type="text" data-save="g_method" placeholder=""></label><label class="fl fld "><span>Hasilnya pada benda 1</span><input type="text" data-save="g_h1" placeholder=""></label><label class="fl fld "><span>Hasilnya pada benda 2</span><input type="text" data-save="g_h2" placeholder=""></label><label class="fl fld "><span>Hasilnya pada benda 3</span><input type="text" data-save="g_h3" placeholder=""></label><label class="fl fld "><span>Mengapa lebih mudah dengan satu nama perintah?</span><textarea data-save="g_guna" rows="2" placeholder=""></textarea></label>
+<details class="pl"><summary>Macet? Petunjuk 1</summary><p>Cari satu kegiatan yang <b>dimiliki semua</b> bendamu, tetapi hasilnya berbeda pada tiap benda.</p></details><details class="pl"><summary>Macet? Petunjuk 2</summary><p>Bayangkan kegiatan itu dijalankan pada tiap benda. Tanyakan: apakah hasilnya sama, atau berbeda pada tiap benda?</p></details>
+</section>
+<section id="b7" class="noprint">
+<div class="sec-head"><span class="badge">Bagian 7</span><span class="time">menit 66-69</span></div>
+<h2>Menarik kesimpulan</h2>
+<div class="panel"><p>Berhenti dulu. Tulis dengan <b>kata-kata kalian sendiri</b>, tidak perlu persis seperti buku. Jawabannya akan kalian sampaikan ke kelas. Jangan ubah jawabanmu setelah guru menyebut istilah resmi.</p></div>
+<label class="fl fld "><span>Yang kami pahami dari PBO</span><textarea data-save="k_pbo" rows="3" placeholder=""></textarea></label><label class="fl fld "><span>Penjelasan class, objek, atribut, dan method dengan kalimat sendiri</span><textarea data-save="k_istilah" rows="4" placeholder=""></textarea></label><label class="fl fld "><span>Satu kalimat tentang enkapsulasi, pewarisan, dan polimorfisme</span><textarea data-save="k_pilar" rows="3" placeholder=""></textarea></label><div class="panel cek"><b>Cek diri sebelum dikumpulkan:</b>
+<label><input type="checkbox" data-chk="c1"> Kami memilih kasus dan mengisi Bagian 1 sampai 7.</label>
+<label><input type="checkbox" data-chk="c2"> Nama class berupa benda umum, bukan nama orang.</label>
+<label><input type="checkbox" data-chk="c3"> Atribut berupa ciri atau data, method berupa kata kerja.</label>
+<label><input type="checkbox" data-chk="c4"> Bagian 7 kami tulis dengan kata sendiri.</label>
+</div></section>
 <section id="kumpul" class="noprint">
 <div class="sec-head"><span class="badge">Kumpulkan</span></div>
 <h2>Setelah menulis kesimpulan: cetak, lalu kumpulkan</h2>
@@ -529,14 +209,13 @@ if ($atributBaru || $methodBaru) {
 <p><button class="btn alt" id="cetak" type="button">Cetak</button> <a class="btn" href="https://docs.google.com/forms/d/e/1FAIpQLSeySiDhHkwHhzHSQszLrdFgUiWy3vKcMg-8HEiQyFJ_h9jUrQ/viewform" target="_blank" rel="noopener">Kumpulkan ↗</a></p>
 </div>
 </section>
-
 <p class="noprint" style="text-align:center">Isian tersimpan otomatis di komputer ini. Tetap pakai komputer yang sama sampai selesai.</p>
 </div>
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
 <div id="cetakdoc"></div>
 <script>
 (function(){
- var KEY='lkm_pbo_v4:';
+ var KEY='lkm_pbo_v5:';
  function g(k){try{return localStorage.getItem(KEY+k)}catch(e){return null}}
  function s(k,v){try{localStorage.setItem(KEY+k,v)}catch(e){}}
  function toast(t){var el=document.getElementById('toast');el.textContent=t;el.style.display='block';clearTimeout(toast.t);toast.t=setTimeout(function(){el.style.display='none'},1600);}
@@ -553,46 +232,21 @@ if ($atributBaru || $methodBaru) {
   var k='c_'+el.getAttribute('data-chk');if(g(k)==='1')el.checked=true;
   el.addEventListener('change',function(){s(k,el.checked?'1':'0')});
  });
- [].forEach.call(document.querySelectorAll('[data-copy]'),function(b){
-  b.addEventListener('click',function(){
-   var ta=document.getElementById(b.getAttribute('data-copy'));
-   var done=function(){toast('Kode tersalin')};
-   if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(ta.value).then(done,function(){ta.select();document.execCommand('copy');done()});}
-   else{ta.select();document.execCommand('copy');done();}
-  });
- });
- function hintCount(){var n=0;for(var i=1;i<=3;i++){if(g('hint'+i)==='1')n++;}var el=document.getElementById('hcount');if(el)el.textContent=n;return n;}
- [1,2,3].forEach(function(i){
-  var box=document.getElementById('hint'+i),btn=box.querySelector('.hbtn'),tx=box.querySelector('.htext');
-  function open(){tx.hidden=false;btn.textContent='Petunjuk '+i+' terbuka';btn.disabled=true;}
-  function sync(){var prev=(i===1)||g('hint'+(i-1))==='1';box.setAttribute('data-locked',prev?'0':'1');btn.disabled=!prev||g('hint'+i)==='1';}
-  if(g('hint'+i)==='1')open();
-  btn.addEventListener('click',function(){s('hint'+i,'1');open();hintCount();[1,2,3].forEach(function(j){var b=document.getElementById('hint'+j);var p=(j===1)||g('hint'+(j-1))==='1';b.setAttribute('data-locked',p?'0':'1');var bb=b.querySelector('.hbtn');bb.disabled=!p||g('hint'+j)==='1';});});
-  sync();
- });
- hintCount();
  document.getElementById('cetak').addEventListener('click',function(){window.print()});
- document.getElementById('unduh').addEventListener('click',function(){
-  var ta=document.getElementById('kode-uji'),txt=ta.value;
-  try{var b=new Blob([txt],{type:'application/octet-stream'}),u=URL.createObjectURL(b),a=document.createElement('a');a.href=u;a.download='uji.php';document.body.appendChild(a);a.click();document.body.removeChild(a);setTimeout(function(){URL.revokeObjectURL(u)},1500);toast('uji.php diunduh');}
-  catch(e){toast('Gagal mengunduh. Salin kodenya di bawah.');}
- });
  function val(k){var el=document.querySelector('[data-save="'+k+'"]');return el?el.value.trim():'';}
- function radio(n){var r=document.querySelector('input[name="'+n+'"]:checked');return r?r.parentNode.textContent.trim():'';}
+ function radio(n){var r=document.querySelector('input[name="'+n+'"]:checked');if(!r)return '';var t=r.parentNode.textContent.trim();return t;}
  function build(){
   var d=document.getElementById('cetakdoc');d.innerHTML='';
   function mk(t,c,x,p){var e=document.createElement(t);if(c)e.className=c;if(x!==undefined&&x!==null)e.textContent=x;(p||d).appendChild(e);return e;}
   function H(x){mk('h2','',x);}
   function tabel(rows){
    var t=mk('table','lap'),cg=document.createElement('colgroup');
-   ['9%','37%','54%'].forEach(function(w){var c=document.createElement('col');c.style.width=w;cg.appendChild(c);});t.appendChild(cg);
+   ['9%','33%','58%'].forEach(function(w){var c=document.createElement('col');c.style.width=w;cg.appendChild(c);});t.appendChild(cg);
    var th=mk('thead','',null,t),tr=mk('tr','',null,th);['No','Pertanyaan atau bagian','Jawaban'].forEach(function(x){mk('th','',x,tr);});
    var tb=mk('tbody','',null,t);
    rows.forEach(function(r){
     var tr=mk('tr','',null,tb);
-    if(r[0]!==null){var n=mk('td','n',r[0],tr);if(r[3])n.rowSpan=r[3];}
-    mk('td','',r[1],tr);
-    mk('td','a',r[2]||'-',tr);
+    mk('td','n',r[0],tr);mk('td','',r[1],tr);mk('td','a',r[2]||'-',tr);
    });
   }
   var kop=mk('div','kop');
@@ -603,45 +257,50 @@ if ($atributBaru || $methodBaru) {
   [['Nama anggota 1',val('n1')],['Nama anggota 2',val('n2')],['Kelas',val('kelas')]].forEach(function(r){
    var tr=mk('tr','',null,id);mk('td','l',r[0],tr);mk('td','c',':',tr);mk('td','',r[1]||'………………………………………',tr);
   });
-  H('Bagian 1. Pernyataan Masalah');
+  H("Bagian 1. Class dan Objek");
   tabel([
-   ['1a','Fungsi class menurut kami',val('fungsi_class'),4],
-   [null,'Fungsi atribut menurut kami',val('fungsi_atribut')],
-   [null,'Fungsi method menurut kami',val('fungsi_method')],
-   [null,'Fungsi objek menurut kami',val('fungsi_objek')],
-   ['1b','Apa yang tampil di layar saat kode dijalankan? (jawaban awal)',val('q1b')],
-   ['1c','Saat saldo Sari berubah, apakah saldo Budi ikut berubah?',radio('q1c')],
-   ['','Alasan untuk 1c',val('q1calasan')]
+   ["1a","Kasus yang dipilih",radio('kasus')+(val('kasus_d')?' — '+val('kasus_d'):'')],
+   ["1b","Objek 1 sampai 4",[val('o1'),val('o2'),val('o3'),val('o4')].filter(Boolean).map(function(x,i){return (i+1)+'. '+x}).join('\n')],
+   ["1c","Nama class",val('cls')],
+   ["1d","Alasan keempat benda satu class",val('alasan1')],
   ]);
-  H('Bagian 2. Pengumpulan Data');
+  H("Bagian 2. Atribut");
   tabel([
-   ['2a','Hasil yang tampil di layar',val('q2hasil')],
-   ['2b','Dibandingkan dengan jawaban awal di 1b dan 1c',radio('q2cocok')],
-   ['','Kalau beda, bagian mana yang di luar perkiraan?',val('q2beda')]
+   ["2a","Atribut dan nilainya (Objek 1 | Objek 2)",[1,2,3,4].map(function(i){return val('a'+i)?val('a'+i)+' | '+val('a'+i+'v1')+' | '+val('a'+i+'v2'):''}).filter(Boolean).join('\n')],
+   ["2b","Atribut yang paling sering berbeda",val('a_beda')],
   ]);
-  H('Bagian 3. Pengolahan Data');
+  H("Bagian 3. Method");
   tabel([
-   ['3a','Ganti $akunSari->saldo = 10000; menjadi 25000. Apa yang berubah dan apa yang tetap?',val('t3a')],
-   ['3b','Di bawah $akunSari->lihatSaldo(); tambahkan $akunSari->setor(5000); lalu $akunSari->lihatSaldo(); Apakah saldo Budi ikut berubah?',val('t3b')],
-   ['3c','Tambahkan akun ketiga untuk Dewi dengan saldo 5000. Berapa baris yang bertambah dan apakah class Akun perlu diubah?',val('t3c')]
+   ["3a","Method dan apa yang terjadi",[1,2,3,4].map(function(i){return val('m'+i)?val('m'+i)+': '+val('m'+i+'h'):''}).filter(Boolean).join('\n')],
+   ["3b","Method yang mengubah atribut",val('m_ubah')],
   ]);
-  H('Bagian 4. Pembuktian');
-  var rows4=[
-   ['4a','Percobaan sampai semua uji lolos',val('percobaan')],
-   ['4b','Uji yang paling lama lolos',val('ujisulit')]
-  ];
-  var ch=[val('ch_atribut'),val('ch_method'),radio('chhasil'),val('ch_kaitan')];
-  if(ch.some(function(x){return x;})){
-   rows4.push(['4c','CHALLENGE: atribut yang ditambahkan',ch[0],4]);
-   rows4.push([null,'CHALLENGE: method yang ditambahkan',ch[1]]);
-   rows4.push([null,'Hasil uji setelah ditambahkan',ch[2]]);
-   rows4.push([null,'Hubungan tambahan dengan buku di perpustakaan',ch[3]]);
-  }
-  tabel(rows4);
-  H('Bagian 5. Menarik Kesimpulan');
+  H("Bagian 4. Enkapsulasi");
   tabel([
-   ['5','Yang kami pahami dari PBO',val('k_pbo'),2],
-   [null,'Penjelasan class, objek, atribut, dan method',val('k_istilah')]
+   ["4a","Data yang dijaga",val('e_atribut')],
+   ["4b","Kegiatan yang boleh mengubah data",val('e_method')],
+   ["4c","Aturan yang dijaga",val('e_aturan')],
+   ["4d","Akibat bila tidak dijaga",val('e_akibat')],
+  ]);
+  H("Bagian 5. Pewarisan");
+  tabel([
+   ["5a","Kelompok umum",val('p_induk')],
+   ["5b","Kelompok khusus 1 dan 2",[val('p_t1'),val('p_t2')].filter(Boolean).join(', ')],
+   ["5c","Ciri dan kegiatan yang sama",val('p_waris')],
+   ["5d","Khusus kelompok 1",val('p_k1')],
+   ["5e","Khusus kelompok 2",val('p_k2')],
+   ["5f","Tantangan: kelompok tambahan dan hubungannya",[val('ch_class'),val('ch_kaitan')].filter(Boolean).join(' — ')],
+  ]);
+  H("Bagian 6. Polimorfisme");
+  tabel([
+   ["6a","Kegiatan yang dimiliki semua benda",val('g_method')],
+   ["6b","Hasil pada tiap benda",[val('g_h1'),val('g_h2'),val('g_h3')].filter(Boolean).join('\n')],
+   ["6c","Manfaat satu nama perintah",val('g_guna')],
+  ]);
+  H("Bagian 7. Menarik Kesimpulan");
+  tabel([
+   ["7a","Yang kami pahami dari PBO",val('k_pbo')],
+   ["7b","Penjelasan class, objek, atribut, dan method",val('k_istilah')],
+   ["7c","Enkapsulasi, pewarisan, dan polimorfisme",val('k_pilar')],
   ]);
   mk('p','ket','Cek diri sebelum dikumpulkan:');
   [].forEach.call(document.querySelectorAll('input[data-chk]'),function(c){mk('p','cek',(c.checked?'[√] ':'[   ] ')+c.parentNode.textContent.trim());});
@@ -649,7 +308,7 @@ if ($atributBaru || $methodBaru) {
  window.addEventListener('beforeprint',build);
  window.addEventListener('afterprint',function(){document.getElementById('cetakdoc').innerHTML='';});
  document.getElementById('hapus').addEventListener('click',function(){
-  if(!confirm('Hapus semua isian di halaman ini?'))return;
+  if(!confirm('Mulai baru? Semua isian di halaman ini akan dihapus.'))return;
   try{Object.keys(localStorage).forEach(function(k){if(k.indexOf(KEY)===0)localStorage.removeItem(k)})}catch(e){}
   location.reload();
  });
